@@ -6,7 +6,7 @@ export default function ModalMovie(props) {
 
 // const baseUrl = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
 
-// const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movieData.poster_path;
+const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movieData.poster_path;
 
 
     return (
@@ -19,7 +19,7 @@ export default function ModalMovie(props) {
                 </Modal.Header>
 
 
-                <img src={props.movieData.poster_path} alt={props.movieData.title} />
+                <img src={full_path} alt={props.movieData.title} />
                 <Modal.Body>{props.movieData.overview}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={props.handleClose}>
