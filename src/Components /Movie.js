@@ -7,6 +7,7 @@ import Form from 'react-bootstrap/Form';
 
 export default function Movie(props) {
     // console.log(props.movie.poster_path);
+    const full = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movie.poster_path;
 
 
 
@@ -21,7 +22,7 @@ export default function Movie(props) {
 
         <>
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={props.movie.poster_path} />
+                <Card.Img variant="top" src={full} />
                 <Card.Body>
 
                     <Card.Title>{props.movie.title}</Card.Title>

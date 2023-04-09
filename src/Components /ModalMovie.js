@@ -1,7 +1,14 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Movie from './Movie';
 
 export default function ModalMovie(props) {
+
+// const baseUrl = 'https://www.themoviedb.org/t/p/w220_and_h330_face';
+
+// const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + props.movieData.poster_path;
+
+
     return (
         <>
 
@@ -10,6 +17,8 @@ export default function ModalMovie(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>{props.movieData.title}</Modal.Title>
                 </Modal.Header>
+
+
                 <img src={props.movieData.poster_path} alt={props.movieData.title} />
                 <Modal.Body>{props.movieData.overview}</Modal.Body>
                 <Modal.Footer>
