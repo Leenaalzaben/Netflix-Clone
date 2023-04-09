@@ -9,6 +9,7 @@ export default function Home() {
     const [movies, setMovies] = useState([]);
 
     async function getMovies() {
+
         const url = process.env.REACT_APP_BACKEND_URL;
         // console.log(111,url);
 
@@ -16,7 +17,7 @@ export default function Home() {
         const moviesData = await response.json();
 
         setMovies(moviesData);
-        console.log(444,movies);
+        console.log(22, movies);
 
 
 
@@ -28,9 +29,9 @@ export default function Home() {
     }, []);
     return (
         <>
-        <h2>Movies List</h2>
-        {/* Render the Movie List comp. */}
-            <MovieList  movies={movies}/>
+            <h2>Movies List</h2>
+            {/* Render the Movie List comp. */}
+            <MovieList movies={movies} />
         </>
     )
 }
