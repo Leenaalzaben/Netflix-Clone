@@ -2,7 +2,6 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import ModalMovie from './ModalMovie';
 import { useState } from 'react';
-import Form from 'react-bootstrap/Form';
 
 
 export default function Movie(props) {
@@ -28,29 +27,12 @@ export default function Movie(props) {
                     <Card.Title>{props.movie.title}</Card.Title>
                     <Card.Text>{props.movie.release_date}</Card.Text>
 
-                    <Form.Group
-                        className="mb-3"
-                        controlId="exampleForm.ControlTextarea1"
-                    >
-                        <Form.Label>Add Your Comment</Form.Label>
-                        <Form.Control as="textarea" rows={3} />
-                    </Form.Group>
-                
-
-
-
-
-
-
-
-
-
-                <Button variant="primary" onClick={handleShow}>More Details</Button>
+                <Button variant="warning" onClick={handleShow}>More Details</Button>
             </Card.Body>
         </Card >
 
 
-            <ModalMovie show={show} handleClose={handleClose} movieData={props.movie} />
+            <ModalMovie show={show} handleClose={handleClose} movieData={props.movie} commentHandler={props.commentHandler}/>
 
 
 

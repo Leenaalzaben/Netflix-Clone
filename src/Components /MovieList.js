@@ -7,7 +7,7 @@ export default function MovieList(props) {
                     return (
                         // each time I want to return movie
                         // return & render Movie comp.
-                        <Movie movie={movie} />
+                        <Movie movie={movie} commentHandler={props.commentHandler} />
                     )
                 })
             }

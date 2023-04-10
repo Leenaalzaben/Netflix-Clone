@@ -22,6 +22,29 @@ export default function Home() {
 
 
     }
+
+function commentHandler(newMovie,id){
+    movies.map(movie=>{
+        if(movie.id === id){
+            movie.comment = newMovie.userComment;
+            console.log(11111,movie)
+            return movie;
+            }else{
+                return movie;
+            }
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
     //sending req to my backend
     useEffect(() => {
         // call back function first parameter and get the data from my server
@@ -31,7 +54,7 @@ export default function Home() {
         <>
             <h2>Movies List</h2>
             {/* Render the Movie List comp. */}
-            <MovieList movies={movies} />
+            <MovieList movies={movies} commentHandler={commentHandler} />
         </>
     )
 }

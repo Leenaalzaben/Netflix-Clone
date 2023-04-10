@@ -10,7 +10,7 @@ const  NavBar =()=>{
           <Navbar.Brand href="/">NETFLIX</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/favorite"> Favorite List</Nav.Link>
+            <Nav.Link href="/FavList"> Favorite List</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
