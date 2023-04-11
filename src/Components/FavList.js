@@ -4,16 +4,17 @@ import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 import { useEffect, useState } from "react";
 import { useRef } from 'react';
-
-
+import { backendURL } from '../utilize'
+import './fav.css'
 
 export default function FavList() {
 
     const [favMovies, setFavMovies] = useState([]);
     // create get function req
+    const updatedCommentRef = useRef("");
     async function getFavList() {
 
-        let url = `${process.env.REACT_APP_BACKEND_URL}/getMovies`;
+        let url = `${backendURL}/getMovies`;
         let response = await fetch(url, {
             method: 'GET',
 
@@ -21,6 +22,7 @@ export default function FavList() {
         // i want to wait until i get the res.
         let recivedData = await response.json();
         setFavMovies(recivedData);
+        console.log(recivedData);
 
         // const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + poster_path;
 
@@ -33,7 +35,7 @@ export default function FavList() {
     }, [])
 
     async function handleDelete(id) {
-        let url = `${process.env.REACT_APP_BACKEND_URL}/deleteMovie/${id}`;
+        let url = `${backendURL}/deleteMovie/${id}`;
 
         let response = await fetch(url, {
 
@@ -47,12 +49,12 @@ export default function FavList() {
     }
     //update
 
-    const updatedCommentRef = useRef("");
 
     async function handleUpdate(id) {
         {
             const updatedComment = updatedCommentRef.current.value;
-            let url = `${process.env.REACT_APP_BACKEND_URL}/updateMovie/${id}`;
+            console.log(updatedComment);
+            let url = `${backendURL}/updateMovie/${id}`;
 
             let response = await fetch(url, {
 
@@ -81,36 +83,37 @@ export default function FavList() {
 
 
     return (
-
         <>
-            <h2>Your Favorite List </h2>
-
-
-            {
-                favMovies && favMovies.map(movie => {
-
-                    return (
-
-                        <Card style={{ width: "18rem" }}>
-                            <Card.Body>
-
-                                <Card.Img variant="top" src={movie.image} alt={movie.id} />
-
-
-                                <Card.Title>{movie.moviename}</Card.Title>
-                                <Card.Text>{movie.comment}</Card.Text>
-                                {/* image */}
+            <h2  >Your Favorite List </h2>
+            <div className={'fav-cards'}>
 
 
 
+                {
+                    favMovies && favMovies.map((movie) => {
+                        console.log(movie);
+                        return (
 
+                            <Card style={{ width: "18rem" }}  >
+                                <Card.Body>
 
+                                    <Card.Img variant="top" src={movie.imageurl} alt={movie.id} />
+
+                                    {movie.moviename ? movie.moviename : movie.moviename = 'Name not avilable'}
+                                    <Card.Title>{movie.moviename}</Card.Title>
+                                    <Card.Text>{movie.comment}</Card.Text>
+                                    {/* image */}
 
 
 
 
 
-                                {/* 
+
+
+
+
+
+                                    {/* 
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Add New Comment </Form.Label>
                                     <Form.Control ref={updatedCommentRef} type="text" placeholder="Enter your comment" />
@@ -119,31 +122,33 @@ export default function FavList() {
 
 
 
-                                <div>
-                                    <Form.Label>Add New Comment </Form.Label>
-                                    <input type="text" ref={updatedCommentRef} />
-                                    <Button variant="info" onClick={() => handleUpdate(movie.id)}> Update </Button>
-                                    <Button variant="danger" onClick={() => handleDelete(movie.id)}> Delete </Button>
+                                    <div >
+                                        <Form.Label>Add New Comment </Form.Label>
+                                        <input type="text" ref={updatedCommentRef} />
+                                        <div className='buttons'>
+                                            <Button variant="info" onClick={() => handleUpdate(movie.id)}> Update </Button>
+                                            <Button variant="danger" onClick={() => handleDelete(movie.id)}> Delete </Button>
+                                        </div>
 
-
-                                </div>
-
-
-
-                            </Card.Body>
-                        </Card>
-                    )
-                })
+                                    </div>
 
 
 
-
+                                </Card.Body>
+                            </Card>
+                        )
+                    })
 
 
 
 
 
-            }
+
+
+
+
+                }
+            </div>
         </>
     )
 

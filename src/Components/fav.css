@@ -1,0 +1,12 @@
+.fav-cards{
+    display: flex;
+    flex-direction: row;
+    
+    gap: 20px;
+}
+.buttons{
+    margin-top: 20px;
+   
+    display: flex;
+    gap: 10px;
+}
