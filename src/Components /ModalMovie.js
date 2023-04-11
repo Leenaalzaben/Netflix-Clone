@@ -26,6 +26,7 @@ export default function ModalMovie(props) {
         let data = {
             // actual send not thunder
             // [moviename, comment]
+            image:props.movieData.full_path,
             moviename:props.movieData.title,
             comment: props.movieData.comment
            

@@ -8,6 +8,7 @@ import { useRef } from 'react';
 
 
 export default function FavList() {
+
     const [favMovies, setFavMovies] = useState([]);
     // create get function req
     async function getFavList() {
@@ -21,6 +22,7 @@ export default function FavList() {
         let recivedData = await response.json();
         setFavMovies(recivedData);
 
+        // const full_path = 'https://www.themoviedb.org/t/p/w220_and_h330_face' + poster_path;
 
     }
     useEffect(() => {
@@ -46,22 +48,27 @@ export default function FavList() {
     //update
     // let userComment = commentRef.current.value;
 
-    const commentRef = useRef();
+    const updatedCommentRef = useRef("");
 
-    async function handleUpdate(id, data) {
+    async function handleUpdate(id) {
+        {
+            const updatedComment = updatedCommentRef.current.value;
+            let url = `${process.env.REACT_APP_BACKEND_URL}/updateMovie/${id}`;
 
-        let url = `${process.env.REACT_APP_BACKEND_URL}/updateMovie/${id}`;
-
-        let response = await fetch(url, {
+            let response = await fetch(url, {
 
 
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ comment: updatedComment }),
 
-        });
+            });
+
+        }
+
+
         getFavList();
 
 
@@ -82,12 +89,18 @@ export default function FavList() {
 
             {
                 favMovies && favMovies.map(movie => {
+
                     return (
+
                         <Card style={{ width: "18rem" }}>
                             <Card.Body>
 
+                                <Card.Img variant="top" src={movie.image} alt={movie.id} />
+
+
                                 <Card.Title>{movie.moviename}</Card.Title>
                                 <Card.Text>{movie.comment}</Card.Text>
+                                {/* image */}
 
 
 
@@ -96,19 +109,27 @@ export default function FavList() {
 
 
 
+
+
+                                {/* 
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Add New Comment </Form.Label>
-                                    <Form.Control ref={commentRef} type="text" placeholder="Enter your comment" />
-
-
-                                </Form.Group>
+                                    <Form.Control ref={updatedCommentRef} type="text" placeholder="Enter your comment" />
+                                </Form.Group> */}
 
 
 
 
                                 <Button variant="danger" onClick={() => handleDelete(movie.id)}> Delete </Button>
+                                <div>
+                                    <Form.Label>Add New Comment </Form.Label>
 
-                                <Button variant="info" onClick={(e) => handleUpdate(e,movie.id)}> Update </Button>
+                                    <input type="text" ref={updatedCommentRef} />
+                                    <Button variant="info" onClick={() => handleUpdate(movie.id)}> Update </Button>
+
+                                </div>
+
+
 
                             </Card.Body>
                         </Card>
