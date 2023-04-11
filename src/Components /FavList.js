@@ -46,7 +46,6 @@ export default function FavList() {
         getFavList();
     }
     //update
-    // let userComment = commentRef.current.value;
 
     const updatedCommentRef = useRef("");
 
@@ -120,12 +119,12 @@ export default function FavList() {
 
 
 
-                                <Button variant="danger" onClick={() => handleDelete(movie.id)}> Delete </Button>
                                 <div>
                                     <Form.Label>Add New Comment </Form.Label>
-
                                     <input type="text" ref={updatedCommentRef} />
                                     <Button variant="info" onClick={() => handleUpdate(movie.id)}> Update </Button>
+                                    <Button variant="danger" onClick={() => handleDelete(movie.id)}> Delete </Button>
+
 
                                 </div>
 
