@@ -2,6 +2,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useRef } from 'react';
+import { backendURL } from '../utilize';
 
 export default function ModalMovie(props) {
     const commentRef = useRef();
@@ -18,15 +19,20 @@ export default function ModalMovie(props) {
         props.commentHandler(newMovie, newMovie.id);
     }
     async function addMovieToFavListHandler(e) {
+        let newMovie = { ...props.movieData }
+        console.log(newMovie);
         // send req to my server (fetch with POST req to server)
         e.preventDefault();
 
-        let url = `${process.env.REACT_APP_BACKEND_URL}/addMovie`;
+        // let url = `${process.env.REACT_APP_BACKEND_URL}/addMovie`;
+        let url = `${backendURL}/addMovie`;
+        
+        console.log(url);
         // data send to my BE
         let data = {
             // actual send not thunder
             // [moviename, comment]
-            image:props.movieData.full_path,
+            image:'https://www.themoviedb.org/t/p/w220_and_h330_face' +newMovie.poster_path,
             moviename:props.movieData.title,
             comment: props.movieData.comment
            
@@ -55,7 +61,7 @@ export default function ModalMovie(props) {
 
     return (
         <>
-            <Modal show={props.show} onHide={props.handleClose}>
+            <Modal show={props.show} onHide={props.handleClose}  key={1}>
                 <Modal.Header closeButton>
                     <Modal.Title>{props.movieData.title}</Modal.Title>
                 </Modal.Header>
