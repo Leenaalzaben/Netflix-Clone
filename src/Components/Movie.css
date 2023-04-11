@@ -1,5 +1,11 @@
-.Movie-cards{
+.Movie-cards {
     display: flex;
-    flex-direction: row;
-    gap: 30px;
-}
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .Card {
+    margin-bottom: 20px;
+    width: calc(33.33% - 10px);
+  }
+  

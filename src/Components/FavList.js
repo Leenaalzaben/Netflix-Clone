@@ -100,8 +100,8 @@ export default function FavList() {
                                     <Card.Img variant="top" src={movie.imageurl} alt={movie.id} />
 
                                     {movie.moviename ? movie.moviename : movie.moviename = 'Name not avilable'}
-                                    <Card.Title>{movie.moviename}</Card.Title>
-                                    <Card.Text>{movie.comment}</Card.Text>
+                                    <Card.Title style={{ fontSize: '1.2rem', fontWeight: 'bold' }}>{movie.moviename}</Card.Title>
+                                    <Card.Text style={{ fontSize: '0.9rem' }}>{movie.comment}</Card.Text>
                                     {/* image */}
 
 
@@ -126,8 +126,8 @@ export default function FavList() {
                                         <Form.Label>Add New Comment </Form.Label>
                                         <input type="text" ref={updatedCommentRef} />
                                         <div className='buttons'>
-                                            <Button variant="info" onClick={() => handleUpdate(movie.id)}> Update </Button>
-                                            <Button variant="danger" onClick={() => handleDelete(movie.id)}> Delete </Button>
+                                            <Button variant="info" onClick={() => handleUpdate(movie.id)} style={{ width: '100%', marginTop: '1rem' }}> Update </Button>
+                                            <Button variant="danger" onClick={() => handleDelete(movie.id)} style={{ width: '100%', marginTop: '1rem' }}> Delete </Button>
                                         </div>
 
                                     </div>
